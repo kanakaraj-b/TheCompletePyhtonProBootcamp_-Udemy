@@ -1,0 +1,19 @@
+Average Height
+Instructions: To Find the average height of the class.
+
+
+student_heights = input("Input a list of student heights ").split()
+for n in range(0, len(student_heights)):
+  student_heights[n] = int(student_heights[n])
+
+total=0
+for height in student_heights:
+	total+=height
+print(f"total height = {total}")
+
+count=0
+for number in student_heights:
+	count+=1
+print(f"number of students = {count}")
+
+print(round(total/count))
