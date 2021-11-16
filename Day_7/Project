@@ -1,0 +1,92 @@
+Introduction:
+
+Hangman Pokemon game
+
+import random 
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+word_list=["pikachu","charizard","machamp","squirtel"]
+rand_word=random.choice(word_list)
+print(rand_word)
+length=len(rand_word)
+display=[]
+life=6
+for i in range(length):
+    display+="_"
+# print(display)
+end_game=False
+while not end_game:
+    chosen_word=input("Enter the word: ").lower()
+    if chosen_word in display:
+        print("You have already entered the letter.")
+    for i in range(length):
+        if chosen_word == rand_word[i]:
+            display[i]=rand_word[i]
+    if chosen_word not in rand_word:
+        print("You guessed a incorrect letter , you lose a life")
+        life-=1
+        if life==0:
+            end_game=True
+            print("You Lose.")
+    
+    print(f"{' '.join(display)}")
+    
+    if "_" not in display:
+        end_game=True
+        print("You won!")
+    
+    print(stages[life])
