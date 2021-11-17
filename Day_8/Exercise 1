@@ -1,0 +1,13 @@
+Introduction: Using function with inputs to find the number of cans of paint needed to paint a wall with defined hight and weight.
+
+import math
+
+def paint_calc(height,width,cover):
+	no_of_Cans=(height*width)/cover
+	no_of_Cans=math.ceil(no_of_Cans)
+	print(f"You'll need {no_of_Cans} cans of paint.")
+  
+test_h = int(input("Height of wall: "))
+test_w = int(input("Width of wall: "))
+coverage = 5
+paint_calc(height=test_h, width=test_w, cover=coverage)
