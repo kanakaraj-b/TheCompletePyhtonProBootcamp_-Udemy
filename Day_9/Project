@@ -1,0 +1,24 @@
+Introduction: Bidding game
+
+Step by step code visualisation : https://pythontutor.com/visualize.html#mode=display
+
+case=False
+bids={}
+def heighest_bidder(bid_data):
+	highest_bid=0
+	winner=""
+	for bidder in bid_data:
+		bid_amt=bid_data[bidder]
+		if bid_amt>highest_bid:
+			highest_bid=bid_amt
+			winner=bidder
+	print(f"The winner is {winner} with the bid amount {highest_bid}")
+
+while not case:
+	name=input("Enter your name ")
+	bid=int(input("Enter your bid: $"))
+	bids[name]=bid
+	repeat=input("Do we have more bidders, yes/no: ")
+	if repeat=="no":
+		case=True
+		heighest_bidder(bids)
