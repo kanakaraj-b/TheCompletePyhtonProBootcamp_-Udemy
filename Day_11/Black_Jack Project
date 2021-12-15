@@ -1,0 +1,79 @@
+Introduction: A game of Black Jack.
+
+
+import random
+from replit import clear
+def deal_card():
+  cards=[11,2,3,4,5,6,7,8,9,10,10,10,10]
+  card=random.choice(cards)
+  return card
+
+def calculate_score(cards):
+	"""Calculates the score of the cards drawn"""
+	if sum(cards) == 21 and len(cards) == 2:
+		return 0
+
+	if 11 in cards  and sum(cards)>21:
+		cards.remove(11)
+		cards.append(1)
+	return sum(cards)
+
+
+def compare(user_score,comp_score):	
+  """Compares the score of user and the score of the computer."""
+
+	if user_score>21 and comp_score>21:
+		return "Your score is more than 21, You lose"
+	elif comp_score==0:
+		return "Opponent has a Blackjack"
+	elif user_score==0:
+		return "You won with a Balckjack"
+	elif user_score>21:
+		return "You went over 21, you lose"
+	elif comp_score>21:
+		return "Opponent went over, You won"
+	elif user_score>comp_score:
+		return "You won"
+	else:
+		return "You lose"
+
+    
+    
+def play_game():	
+  user_cards = []
+  computer_cards = []
+  game_over=False
+  for x in range(2):
+    user_cards.append(deal_card())
+    computer_cards.append(deal_card())
+
+  
+  while not game_over:
+	  user_score=calculate_score(user_cards)
+	  comp_score=calculate_score(computer_cards)
+	  print(f"Your cards: {user_cards}, current score: {user_score}")
+	  print(f"computer's first card is: {computer_cards[0]}")
+
+	  if user_score==0 or comp_score==0 or user_score>21:
+		  game_over=True
+	  else:
+		  next_card=input("Do you want another card y/n?: ")
+		  if next_card=="y":
+			  user_cards.append(deal_card())
+		  else:
+			  game_over=True
+
+
+  while comp_score!=0 and comp_score<17:
+	  computer_cards.append(deal_card())
+	  comp_score=calculate_score(computer_cards)
+	  
+  
+  print(f"Your final cards: {user_cards}, final score: {user_score}")
+  print(f"Computer's cards: {computer_cards} and score: {comp_score}")
+  print(compare(user_score,comp_score))
+
+
+while input("Do you want to play Blackjack? y/n: ")=="y":
+	clear()
+	play_game()
