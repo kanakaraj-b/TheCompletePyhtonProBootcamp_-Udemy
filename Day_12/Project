@@ -1,4 +1,4 @@
-Introduction: Number guessing game - Stores a random number and asks the user to guess that number to win the game.
+	Introduction: Number guessing game - Stores a random number and asks the user to guess that number to win the game.
 
 print("Welcome to the number guessing game.\n")
 import random
@@ -7,7 +7,7 @@ random_no=random.randint(0,100)
 def guess():
   """Takes a number from the user and check whether it matches with the computer's number."""
 	def mode():
-    """Takes the level of the game from the user."""
+    		"""Takes the level of the game from the user."""
 		modes=(input("Enter the level.(Easy/Hard):"))
 		if modes=="Easy":
 			trials=10
