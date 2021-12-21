@@ -1,0 +1,37 @@
+Introduction: Number guessing game - Stores a random number and asks the user to guess that number to win the game.
+
+print("Welcome to the number guessing game.\n")
+import random
+random_no=random.randint(0,100)
+
+def guess():
+  """Takes a number from the user and check whether it matches with the computer's number."""
+	def mode():
+    """Takes the level of the game from the user."""
+		modes=(input("Enter the level.(Easy/Hard):"))
+		if modes=="Easy":
+			trials=10
+			return trials
+		else:
+			trials=5
+			return trials
+	new_trials=mode()
+	print(f"You have {new_trials} trials\n")
+	while new_trials>0:
+		guessed=int(input("Enter the guessed number: "))
+		if guessed==random_no:
+			print(f"You won, The correct number is {guessed}")
+			break
+		elif guessed<random_no:
+			print("The guessed number is too low.")
+			new_trials-=1
+			print(f"You have {new_trials} trails remaining\n")
+		elif guessed>random_no:
+			print("The guessed number is too high.")
+			new_trials-=1
+			print(f"You have {new_trials} trials remaining\n")
+	if new_trials==0:
+		print("You lost the game.")
+		print(f"The correct number is {random_no}")
+    
+guess()
