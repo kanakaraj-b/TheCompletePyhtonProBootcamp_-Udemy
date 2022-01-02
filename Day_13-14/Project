@@ -69,4 +69,3 @@ def play():
 			print(f"Wrong answer , Your final score is {score}.")
 
 play()
-
