@@ -1,0 +1,57 @@
+import random
+from art import logo
+from art import vs
+from game_data import data
+from replit import clear
+
+def fetch_data():
+	"""Pulls out random data from the the dictionary."""
+	return random.choice(data)
+
+def statement(case):
+	"""Converts the items from the dictionary in a readable format."""
+	name=case["name"]
+	description=case["description"]
+	country=case["country"]
+	return f"{name}, a {description}, from {country}."
+
+def comparer(choice,follower_a,follower_b):
+	"""Checks for the larger follower count and returns binary output as per the user's choice"""
+	if follower_a>follower_b:
+		return choice == "a"
+	else:
+		return choice == "b"
+
+
+def play():
+	score=0
+	repeater=True
+	case_a=fetch_data()
+	case_b=fetch_data()
+	
+	while repeater:
+		case_a=case_b
+		case_b=fetch_data()
+
+		while case_a==case_b:
+			case_b=fetch_data()
+
+		print(f"Comapre A: {statement(case_a)}")
+		print(vs)
+		print(f"Against B: {statement(case_b)}")
+		choice=input("Who has more followers A or B? ").lower()
+		follower_a=case_a["follower_count"]
+		follower_b=case_b["follower_count"]
+		compare=comparer(choice,follower_a,follower_b)
+
+		clear()
+		print(logo)
+		if compare==True:
+			score+=1
+			print(f"You got it right, your current score is {score}")
+		else:
+			repeater=False
+			print(f"Wrong answer , Your final score is {score}.")
+
+play()
+
