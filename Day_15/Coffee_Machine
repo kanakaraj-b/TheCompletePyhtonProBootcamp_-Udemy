@@ -1,1 +1,79 @@
 
+MENU = {"espresso":
+            {"ingredients":
+                 {"water": 50,"coffee": 18,},
+             "cost": 50},
+        "latte":
+            {"ingredients": {"water": 200,"milk": 150,"coffee": 24,},
+             "cost": 70},
+        "cappuccino":
+            {"ingredients": {"water": 250,"milk": 100,"coffee": 24,},
+             "cost": 85}}
+
+resources = {"water": 500,"milk": 300,"coffee": 100,}
+profit = 0
+
+
+def report():
+    print(f"Water: {resources['water']} ml")
+    print(f"milk: {resources['water']} ml")
+    print(f"coffee: {resources['coffee']} ml")
+
+
+def profit_count(drink_cost):
+    global profit
+    profit += drink_cost
+    return
+
+
+def avail_resource(order):
+    for item in order:
+        if resources[item] < order[item]:
+            print("Sorry, Insufficient resource.")
+            return False
+        else:
+            return True
+
+
+def check_pay(money):
+    if MENU[choice]['cost'] > money:
+        extra = MENU[choice]['cost'] - money
+        print("Insufficient money")
+        print(f"Add Rs {extra} extra")
+        return False
+    elif MENU[choice]['cost'] <= money:
+        bal = money - MENU[choice]['cost']
+        print(f"Please collect the change of Rs:{bal}")
+        return True
+
+
+def prepare(option, ingredients):
+    print(f"You {option} coffee is ready to drink")
+    for item in ingredients:
+        resources[item] -= ingredients[item]
+
+
+start = True
+
+while start:
+    choice = input("What would you like (espresso/latte/cappuccino): ")
+    if choice == "off":
+        start = False
+    elif choice == "report":
+        report()
+    elif choice == "profit":
+        print(profit)
+    else:
+        coffee = MENU[choice]
+        cost = coffee['cost']
+        print(f"You have opted for {choice}, checking the available resources...")
+        if avail_resource(coffee["ingredients"]):
+            print(f"It will cost RS {coffee['cost']}")
+            payment = int(input("Please insert money: "))
+            if check_pay(payment):
+                profit_count(cost)
+                prepare(choice,coffee["ingredients"])
+
+
+
+
